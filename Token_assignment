@@ -18,11 +18,24 @@ pragma solidity 0.8.18;
 contract MyToken {
 
     // public variables here
+string public tokenname = "Meta";
+string public tokenabbr = "Mt";
+uint public totalsupply = 0;
 
     // mapping variable here
+mapping(address => uint) public balances;
 
     // mint function
-
+function mint (address _addr, uint _val) public{
+    totalsupply+= _val;
+    balances[_addr]+= _val;    
+}
     // burn function
+function burn (address _addr, uint _val) public{
+    if (balances[_addr]>=_val){
+    totalsupply-= _val;
+    balances[_addr]-= _val;  
+    }  
+}
 
 }
